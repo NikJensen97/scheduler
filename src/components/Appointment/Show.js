@@ -1,10 +1,5 @@
 import React from "react";
-/*<Show
-      student={"Bobathy"}
-      interviewer={interviewers}
-      onEdit={action("onEdit")}
-      onDelete={action("onDelete")}
-    />)); */
+
 export default function Show(props) {
 
   return (
