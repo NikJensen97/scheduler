@@ -1,11 +1,6 @@
 import React from "react";
 import Button from "components/Button.js";
-/* .add("Confirm", () => (
-    <Confirm
-    message={"Delete the appointment?"}
-    onConfirm={action("onConfirm")}
-    onCancel={action("onCancel")}
-    />)); */
+
 export default function Confirm(props) {
 
   return (
