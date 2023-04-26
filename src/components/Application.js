@@ -30,9 +30,30 @@ export default function Application(props) {
       }));
     })
     // console.log(state.interviewers)
-  });
+  }, []);
+  function bookInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+
+    axios.put(`http://localhost:8001/api/appointments/${id}`, {
+      interview
+    }
+    ).then(setState({
+      ...state,
+      appointments
+    }))
+    return Promise.resolve();
+  }
+
   dailyInterviews = getInterviewersForDay(state, state.day);
-  
+
   dailyAppointments = getAppointmentsForDay(state, state.day);
   const mapAppointments = dailyAppointments.map(appointment => {
     const interview = getInterview(state, appointment.interview);
@@ -43,6 +64,7 @@ export default function Application(props) {
         time={appointment.time}
         interview={interview}
         interviewers={dailyInterviews}
+        bookInterview={bookInterview}
       />
     )
   });
