@@ -9,6 +9,24 @@ export default function useApplicationData() {
     appointments: {},
     interviewers: {}
   });
+  function updateSpots(state, appointments) {
+    let result = [];
+    for (let day of state.days) {
+      let spots = 0;
+      let dayAppointment = day.appointments;
+      for (let app of Object.values(appointments)) {
+        if (dayAppointment.includes(app.id)) {
+          if (app.interview === null) {
+            spots++;
+          }
+        }
+      }
+      result.push({...day, spots: spots});
+    }
+
+    return result;
+
+  }
   const setDay = day => setState({ ...state, day });
   // const setDays = days => setState(prev => ({ ...prev, days }));
   useEffect(() => {
@@ -40,13 +58,15 @@ export default function useApplicationData() {
     }
     ).then(setState({
       ...state,
-      appointments
+      appointments,
+      days: updateSpots(state, appointments)
     }))
-  }
+  };
 
   function cancelInterview(id) {
     const appointment = {
-      ...state.appointments[id]
+      ...state.appointments[id],
+      interview: null
     };
     const appointments = {
       ...state.appointments,
@@ -55,7 +75,8 @@ export default function useApplicationData() {
     return axios.delete(`http://localhost:8001/api/appointments/${id}`).then(
       setState({
         ...state,
-        appointments
+        appointments,
+        days: updateSpots(state, appointments)
       }))
   }
   return {
