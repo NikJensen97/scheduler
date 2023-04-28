@@ -48,7 +48,7 @@ export default function Appointment(props) {
     <>
       <Header
         time={props.time} />
-      <article className="appointment"></article>
+      <article className="appointment" data-testid="appointment"></article>
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === CREATE && (
         <Form
@@ -80,7 +80,7 @@ export default function Appointment(props) {
         message={'Are you sure you would like to delete?'}
       />}
       {mode === ERROR_DELETE && <Error message="There was an error deleting your appointment" onClose={() => back()} />}
-      {mode === ERROR_SAVE && <Error message="There was an saving deleting your appointment" onClose={() => back()} />}
+      {mode === ERROR_SAVE && <Error message="There was an error saving your appointment" onClose={() => back()} />}
     </>
   )
 
