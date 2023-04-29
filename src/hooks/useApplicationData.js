@@ -21,14 +21,13 @@ export default function useApplicationData() {
           }
         }
       }
-      result.push({...day, spots: spots});
+      result.push({ ...day, spots: spots });
     }
 
     return result;
 
   }
   const setDay = day => setState({ ...state, day });
-  // const setDays = days => setState(prev => ({ ...prev, days }));
   useEffect(() => {
 
     Promise.all([
@@ -40,7 +39,7 @@ export default function useApplicationData() {
         ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data
       }));
     })
-    // console.log(state.interviewers)
+
   }, []);
   function bookInterview(id, interview) {
     const appointment = {

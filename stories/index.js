@@ -168,33 +168,33 @@ storiesOf("Appointment", module)
   />)
   .add('Edit', () => (
     <Form
-    student={'Nik'}
-    interviewer={3}
-    interviewers={interviewers}
-    onSave={action("onSave")}
-    onCancel={action("OnCancel")}
+      student={'Nik'}
+      interviewer={3}
+      interviewers={interviewers}
+      onSave={action("onSave")}
+      onCancel={action("OnCancel")}
 
 
-     />))
-    .add('Create', () => (
-      <Form
+    />))
+  .add('Create', () => (
+    <Form
       onSave={action("onSave")}
       onCancel={action("OnCancel")}
       interviewers={interviewers}
-      />))
-      .add("Appointment Empty", () => (
-        <Fragment>
-          <Appointment id={1} time="4pm" />
-          <Appointment time="5pm" />
-        </Fragment>
-      ))
-      .add("Appointment Booked", () => (
-        <Fragment>
-          <Appointment
-            id={1}
-            time="4pm"
-            interview={{ student: "Lydia Miller-Jones", interviewer }}
-          />
-          <Appointment time="5pm" />
-        </Fragment>
-      ));
+    />))
+  .add("Appointment Empty", () => (
+    <Fragment>
+      <Appointment id={1} time="4pm" />
+      <Appointment time="5pm" />
+    </Fragment>
+  ))
+  .add("Appointment Booked", () => (
+    <Fragment>
+      <Appointment
+        id={1}
+        time="4pm"
+        interview={{ student: "Lydia Miller-Jones", interviewer }}
+      />
+      <Appointment time="5pm" />
+    </Fragment>
+  ));
